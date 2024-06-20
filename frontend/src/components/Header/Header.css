@@ -1,0 +1,33 @@
+.header{
+    height: 34vw;
+    margin: 30px auto;
+    background:url('/header_img.png');
+    position: relative;
+
+}
+.header .header-contents{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: start;
+    top: 12vw;
+    left: 4vw;
+}
+.header-contents h2{
+    font-size: 65px;
+    color: white;
+}
+.header-contents p{
+    font-size: 30px;
+    color:white;
+    width: 80%;
+}
+.header-contents button{
+    border: none;
+    border-radius: 50px;
+    font-size: 25px;
+    padding: 5px 20px;
+    margin-top: 4px;
+    cursor: pointer;
+}

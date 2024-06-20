@@ -1,0 +1,42 @@
+.explore-menu h1{ 
+    font-size: 50px;
+    margin-bottom: 8px;
+}
+.explore-menu p{
+    font-size: 40px;
+    margin-bottom: 12px;
+   
+}
+.explore-menu{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.explore-menu hr{
+    margin: 12px 0px;
+    height: 2px;
+    background-color: black;
+    border: none;
+}
+.explore-menu-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    
+   
+}
+.explore-menu-list .menu-item{
+    padding: 2px 5px;
+    margin: 2px 16px;
+    
+
+}
+.explore-menu-list .active{
+    border: 4px solid orangered;
+    border-radius: 50%;
+    padding: 5px;
+}
+.menu-item h4{
+    padding: 2px 35px;
+}
