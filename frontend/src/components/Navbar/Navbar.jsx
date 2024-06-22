@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {assets} from '../../assets/assets'
+
+import { Link } from 'react-router-dom'
 import "./Navbar.css"
-const Navbar=()=>{
+import { StoreContext } from '../../context/StoreContext'
+const Navbar=({setLogin})=>{
     const [menu,setMenu]=useState("home")
+    const {cartItems}=useContext(StoreContext)
+    let Length = Object.keys(cartItems).length
     return(
         <div className="navbar">
-            <img src={assets.logo} alt="" className='logo'/>
+            <Link to='/'><img src={assets.logo} alt="" className='logo'/></Link>
             <ul className='navbar-menu'>
                 <li onClick={()=>setMenu("home")}className={menu=='home'?"active":""}>home</li>
                 <li onClick={()=>setMenu("menu")} className={menu=='menu'?"active":""}>menu</li>
@@ -15,10 +20,10 @@ const Navbar=()=>{
             <div className='navbar-right'>
                 <img src={assets.search_icon} alt="" />
                 <div className='navbar-search-icon'>
-                    <img src={assets.basket_icon} alt="" />
-                    <div className="dot"></div>
+                    <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
+                    <div className="dot">{Length}</div>
                 </div>
-                <button>signin</button>
+                <button onClick={()=>setLogin(true)}>signin</button>
             </div> 
 
         </div>

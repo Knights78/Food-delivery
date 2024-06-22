@@ -6,16 +6,17 @@ import Cart from './pages/Cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './components/Footer/Footer'
 import MobileApp from './components/MobileApp/MobileApp'
+import LoginPopup from './components/LoginPopup/LoginPopup'
 
 
 function App() {
   
-
+ const [login,setLogin]=useState(false)
   return (
     <>
-   
+    {login?<LoginPopup setLogin={setLogin}/>:""}
     <div className='app'>
-      <Navbar/>
+      <Navbar setLogin={setLogin}/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/cart' element={<Cart/>}/>
