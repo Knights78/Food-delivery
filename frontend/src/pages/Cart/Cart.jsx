@@ -30,7 +30,7 @@ function Cart() {
           filteredItems.map((item, index) => (
             <div key={index}>
               <div className="cart-items-title cart-items-item">
-                <img src={item.image} alt={item.name} />
+                <img src={'http://localhost:4000/images/'+item.image} alt={item.name} />
                 <p>{item.name}</p>
                 <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>

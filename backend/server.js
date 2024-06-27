@@ -2,7 +2,10 @@ import express from "express"
 import cors from "cors"
 import  connectDB  from "./config/db.js"
 import foodRouter from "./routes/foodRoute.js"
-
+import userRouter from "./routes/UserRoute.js"
+import 'dotenv/config'
+import cartRouter from "./routes/cartRoute.js"
+import orderRouter from './routes/orderRoute.js'
 const app=express()
 const port=4000
 
@@ -20,7 +23,9 @@ app.use('/images',express.static('uploads'))//any request in the /images path is
 // When a request is made to /images/somefile.jpg, the middleware will look for a file named somefile.jpg in the "uploads" directory.
 // If the file is found, it will be served to the client.
 // If the file is not found, a 404 error will be returned.
-
+app.use('/api/user',userRouter)
+app.use('/api/cart',cartRouter)
+app.use('/api/order',orderRouter)
 
 app.get("/",(req,res)=>{
     res.send("WORKING API")

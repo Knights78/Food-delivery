@@ -1,13 +1,28 @@
 import { useContext, useState } from 'react'
+import {useNavigate} from "react-router-dom"
 import {assets} from '../../assets/assets'
 
 import { Link } from 'react-router-dom'
 import "./Navbar.css"
 import { StoreContext } from '../../context/StoreContext'
 const Navbar=({setLogin})=>{
+ 
+
     const [menu,setMenu]=useState("home")
-    const {cartItems}=useContext(StoreContext)
+
+    const {cartItems,token,setToken,username}=useContext(StoreContext)
+     
+    // let name=username
     let Length = Object.keys(cartItems).length
+    const navigate=useNavigate();
+
+    const Logout=()=>{
+        console.log("Logout")
+        localStorage.removeItem("token")//this will remove the token from the local storage and no user will be there
+        setToken("")
+        navigate('/')
+    }
+
     return(
         <div className="navbar">
             <Link to='/'><img src={assets.logo} alt="" className='logo'/></Link>
@@ -23,7 +38,20 @@ const Navbar=({setLogin})=>{
                     <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                     <div className="dot">{Length}</div>
                 </div>
-                <button onClick={()=>setLogin(true)}>signin</button>
+                {!token?(
+                     <button onClick={()=>setLogin(true)}>signin</button>
+                ):(
+                    <div className="navbar-profile">
+                        <img src={assets.profile_icon} alt="" />
+                        <b className='username'>{username}</b>                        
+                        <ul className="profile-dropdown">
+                            <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
+                            <hr />
+                            <li onClick={Logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
+                        </ul>
+                    </div>
+                )}
+               
             </div> 
 
         </div>
