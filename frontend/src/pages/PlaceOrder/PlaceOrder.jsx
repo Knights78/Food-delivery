@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./PlaceOrder.css";
 import { StoreContext } from '../../context/StoreContext';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function PlaceOrder() {
   const { TotalAmount, token, food_list, cartItems } = useContext(StoreContext);
+  const navigate=useNavigate()
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -32,9 +34,31 @@ function PlaceOrder() {
       items: order_items,
       amount: TotalAmount() + 2,
     };
+   // console.log(orderData)
+    const response = await axios.post('http://localhost:4000/api/order/placeorder', { orderData }, { headers: { token } });
+   // console.log(response)
+    if(response.data.success)
+      {
+        const {session_url}=response.data;
+       // console.log(session_url)
+        window.location.replace(session_url)
+      }
+      else{
+        alert("errorrrrrrr")
+      }
 
     
   };
+  useEffect(()=>{
+    if(!token)
+      {
+        navigate('/cart')
+      }
+      else if(TotalAmount()==0){
+
+        navigate('/cart')
+      }
+  },[])
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
